@@ -111,8 +111,8 @@ class Af_Readability extends Plugin {
 				<ul class='panel panel-scrollable list list-unstyled'>
 					<?php foreach ($enabled_feeds as $f) { ?>
 						<li>
-							<?php if (Feeds::_has_icon(intval($f))) { ?>
-								<img src='<?= Feeds::_get_icon_url(intval($f)) ?>' style="max-height: 20px" />
+							<?php if (Feeds::_has_icon($f)) { ?>
+								<img src='<?= Feeds::_get_icon_url($f) ?>' style="max-height: 20px" />
 							<?php } else { ?> <i class='material-icons'>rss_feed</i> <?php } ?>
 							<a href='#'	onclick="CommonDialogs.editFeed(<?= $f ?>)">
 									<?= Feeds::_get_title($f) . " " . (in_array($f, $append_feeds) ? __("(append)") : "") ?>
