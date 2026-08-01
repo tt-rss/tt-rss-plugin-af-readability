@@ -68,16 +68,16 @@
         },
         {
             "name": "fivefilters/readability.php",
-            "version": "v4.0.0",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fivefilters/readability.php.git",
-                "reference": "139133c1568ca29ce2015273c2f7bde0e3081de3"
+                "reference": "0e2370d2488f79651caf11164853e892775e294c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fivefilters/readability.php/zipball/139133c1568ca29ce2015273c2f7bde0e3081de3",
-                "reference": "139133c1568ca29ce2015273c2f7bde0e3081de3",
+                "url": "https://api.github.com/repos/fivefilters/readability.php/zipball/0e2370d2488f79651caf11164853e892775e294c",
+                "reference": "0e2370d2488f79651caf11164853e892775e294c",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +125,7 @@
             ],
             "support": {
                 "issues": "https://github.com/fivefilters/readability.php/issues",
-                "source": "https://github.com/fivefilters/readability.php/tree/v4.0.0"
+                "source": "https://github.com/fivefilters/readability.php/tree/v4.1.0"
             },
             "time": "2026-07-18T21:16:58+00:00"
         },
