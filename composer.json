@@ -1,6 +1,9 @@
 {
+    "name": "tt-rss/af-readability",
+    "description": "Try to inline article content using Readability for tt-rss",
     "minimum-stability": "stable",
     "prefer-stable": true,
+    "license": "AGPL-3.0-or-later",
     "repositories": [
         {
             "type": "composer",
