@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec4d559879980badee1777806a2bf2df",
+    "content-hash": "655de623da4d5b324a52cbe2a6e90aaf",
     "packages": [
         {
             "name": "brick/math",
@@ -127,7 +127,7 @@
                 "issues": "https://github.com/fivefilters/readability.php/issues",
                 "source": "https://github.com/fivefilters/readability.php/tree/v4.1.0"
             },
-            "time": "2026-07-18T21:16:58+00:00"
+            "time": "2026-07-30T17:51:22+00:00"
         },
         {
             "name": "psr/http-factory",
