@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           # Regenerate lock file to ensure it's in sync with composer.json
-          composer update --lock --no-interaction
+          composer update --no-interaction
           composer install --no-interaction --prefer-dist
 
       - name: Validate composer
