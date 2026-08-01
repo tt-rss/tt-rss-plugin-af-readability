@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "fivefilters/readability.php": "^4.0",
+        "fivefilters/readability.php": "^4.1",
         "psr/http-factory": "^1.0"
     }
 }
