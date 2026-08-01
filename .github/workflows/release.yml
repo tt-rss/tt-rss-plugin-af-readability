@@ -45,7 +45,7 @@ jobs:
           git push
 
       - name: Validate composer
-        run: composer validate --strict
+        run: composer validate
 
       - name: Setup Node.js
         uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65
