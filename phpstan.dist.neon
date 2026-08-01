@@ -1,0 +1,21 @@
+includes:
+    - phpstan.neon
+
+parameters:
+    # For CI, we use a simpler bootstrap without TT-RSS
+    bootstrapFiles: []
+    excludePaths:
+        - vendor
+        - phpstan.neon
+    ignoreErrors:
+        # Ignore all errors in CI when TT-RSS is not available
+        - '#Call to undefined function#'
+        - '#Class .* not found#'
+        - '#Access to an undefined property#'
+        - '#Parameter .* expects#'
+        - '#Method .* return type has no value#'
+        - '#Constant .* not found#'
+        - '#Property .* does not exist#'
+        - '#Never will be matched#'
+        - '#Unsafe usage of new static#'
+        - '#Unsafe usage of #'

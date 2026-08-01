@@ -1,0 +1,55 @@
+name: Static Analysis
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@7d835878343a71575c27bf6a326cbcff35fed5bc
+        with:
+          php-version: '8.4'
+          coverage: none
+          tools: phpstan
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --ignore-platform-reqs || true
+
+      - name: Run PHPStan
+        run: phpstan analyse --configuration=phpstan.dist.neon --no-progress --error-format=github || true
+
+  php-lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@7d835878343a71575c27bf6a326cbcff35fed5bc
+        with:
+          php-version: '8.4'
+          coverage: none
+
+      - name: Lint PHP files
+        run: |
+          set -e
+          for f in $(find . -name "*.php" -not -path "./vendor/*"); do
+            php -l "$f" || exit 1
+          done

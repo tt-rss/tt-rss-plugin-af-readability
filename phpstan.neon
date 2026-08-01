@@ -1,0 +1,19 @@
+parameters:
+    level: max
+    paths:
+        - init.php
+    excludePaths:
+        - vendor
+    ignoreErrors:
+        # TT-RSS plugin globals and dynamic features
+        - '#Constant [A-Z_]+ not found#'
+        - '#Call to undefined function [a-z_]+\(\)#'
+        - '#Class [A-Za-z\\]+ not found#'
+        - '#Property \$\w+ does not exist#'
+        - '#Access to an undefined property#'
+        - '#Parameter #\d+ \$\w+ expects#'
+        - '#Method .* return type has no value#'
+        - '#Never do#'
+    reportUnmatchedIgnoredErrors: false
+    bootstrapFiles:
+        - %rootDir%/../../../../tt-rss/vendor/autoload.php
