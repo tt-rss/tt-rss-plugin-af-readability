@@ -26,9 +26,23 @@ jobs:
 
       - name: Install dependencies
         run: |
-          # Regenerate lock file to ensure it's in sync with composer.json
-          composer update --lock --no-interaction
+          # Try install first with existing lock file (reproducible builds)
+          if composer install --no-interaction --prefer-dist; then
+            exit 0
+          fi
+          
+          # If install fails, lock file is out of sync - regenerate it
+          # This is a fallback only when the committed lock file is invalid
+          rm -f composer.lock
           composer install --no-interaction --prefer-dist
+          
+          # Validate and commit the regenerated lock file
+          composer validate --strict
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add composer.lock
+          git commit -m "chore: regenerate composer.lock to sync with composer.json"
+          git push
 
       - name: Validate composer
         run: composer validate --strict
