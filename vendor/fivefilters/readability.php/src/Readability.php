@@ -9,8 +9,6 @@ use fivefilters\Readability\Nodes\DOM\DOMText;
 use fivefilters\Readability\Nodes\NodeUtility;
 use Psr\Log\LoggerInterface;
 use \Masterminds\HTML5;
-use League\Uri\Http;
-use League\Uri\UriResolver;
 
 /**
  * Class Readability.
@@ -803,18 +801,94 @@ class Readability
             return $uri;
         }
 
-        // Dotslash relative URI.
-        //if (strpos($uri, './') === 0) {
-        //    return $pathBase . substr($uri, 2);
-        //}
+        return $this->resolveRelativeURI($pathBase, $uri);
+    }
 
-        $baseUri = Http::createFromString($pathBase);
-        $relativeUri = Http::createFromString($uri);
-        return (string)UriResolver::resolve($relativeUri, $baseUri);
+    /**
+     * Resolve a relative URI against a base URI using a native RFC 3986-style path merge.
+     *
+     * @param string $baseUri
+     * @param string $relativeUri
+     *
+     * @return string
+     */
+    private function resolveRelativeURI($baseUri, $relativeUri)
+    {
+        $baseParts = parse_url($baseUri);
+        $relativeParts = parse_url($relativeUri);
 
-        // Standard relative URI; add entire path. pathBase already includes a
-        // trailing "/".
-        //return $pathBase . $uri;
+        if ($relativeParts === false) {
+            return $relativeUri;
+        }
+
+        $scheme = $baseParts['scheme'] ?? '';
+        $host = $baseParts['host'] ?? '';
+        $port = isset($baseParts['port']) ? ':' . $baseParts['port'] : '';
+        $path = $baseParts['path'] ?? '/';
+
+        if (isset($relativeParts['path'])) {
+            if (substr($relativeParts['path'], 0, 1) === '/') {
+                $path = $relativeParts['path'];
+            } else {
+                $path = rtrim($path, '/') . '/' . $relativeParts['path'];
+            }
+
+            $path = $this->removeDotSegments($path);
+        }
+
+        $resolvedUri = $scheme . '://' . $host . $port . $path;
+
+        if (isset($relativeParts['query'])) {
+            $resolvedUri .= '?' . $relativeParts['query'];
+        }
+
+        if (isset($relativeParts['fragment'])) {
+            $resolvedUri .= '#' . $relativeParts['fragment'];
+        }
+
+        return $resolvedUri;
+    }
+
+    /**
+     * Remove dot segments from a path.
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    private function removeDotSegments($path)
+    {
+        $leadingSlash = substr($path, 0, 1) === '/';
+        $trailingSlash = substr($path, -1) === '/';
+
+        $path = ltrim($path, '/');
+        $segments = explode('/', $path);
+        $normalizedSegments = [];
+
+        foreach ($segments as $segment) {
+            if ($segment === '' || $segment === '.') {
+                continue;
+            }
+
+            if ($segment === '..') {
+                if (!empty($normalizedSegments)) {
+                    array_pop($normalizedSegments);
+                }
+
+                continue;
+            }
+
+            $normalizedSegments[] = $segment;
+        }
+
+        $normalizedPath = implode('/', $normalizedSegments);
+        $normalizedPath = $leadingSlash ? '/' . $normalizedPath : $normalizedPath;
+
+        if ($trailingSlash && $normalizedPath !== '' && substr($normalizedPath, -1) !== '/') {
+            $normalizedPath .= '/';
+        }
+
+        return $normalizedPath === '' ? '/' : $normalizedPath;
     }
 
     /**

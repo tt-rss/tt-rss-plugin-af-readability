@@ -5,16 +5,15 @@
         {
 	        "name": "fivefilters/readability.php",
 	        "type": "vcs",
-	        "url": "https://dev.tt-rss.org/fox/readability-php.git"
+	        "url": "https://github.com/tt-rss/tt-rss-readability-php.git"
         },
         {
 	        "name": "masterminds/html5",
 	        "type": "vcs",
-	        "url": "https://dev.tt-rss.org/fox/html5-php.git"
+	        "url": "https://github.com/tt-rss/tt-rss-html5-php.git"
         }
     ],
     "require": {
-        "fivefilters/readability.php": "dev-master",
-		  "psr/http-factory": "1.0.1"
+        "fivefilters/readability.php": "dev-main"
     }
 }

@@ -200,4 +200,18 @@ class ReadabilityTest extends \PHPUnit\Framework\TestCase
         $parser = new Readability(new Configuration());
         $this->assertNull($parser->getContent());
     }
+
+    /**
+     * Test that relative URLs are resolved without relying on the league/uri package.
+     */
+    public function testToAbsoluteURIResolvesRelativePaths(): void
+    {
+        $readability = new Readability(new Configuration(['OriginalURL' => 'http://fakehost/test/test.html']));
+        $method = new \ReflectionMethod(Readability::class, 'toAbsoluteURI');
+        $method->setAccessible(true);
+
+        $this->assertSame('http://fakehost/test/child.html', $method->invoke($readability, 'child.html'));
+        $this->assertSame('http://fakehost/test/child.html', $method->invoke($readability, './child.html'));
+        $this->assertSame('http://fakehost/child.html', $method->invoke($readability, '../child.html'));
+    }
 }
