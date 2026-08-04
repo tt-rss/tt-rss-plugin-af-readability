@@ -9,7 +9,7 @@
         {
         "name": "masterminds/html5",
         "type": "vcs",
-        "url": "https://dev.tt-rss.org/fox/html5-php.git"
+        "url": "https://github.com/tt-rss/tt-rss-html5-php.git"
         }
     ],
     "authors": [
@@ -39,8 +39,7 @@
         "ext-xml": "*",
         "ext-mbstring": "*",
         "psr/log": "^1.0",
-        "masterminds/html5": "2.7.x-dev@dev",
-        "league/uri": "^6.4"
+        "masterminds/html5": "dev-main"
     },
     "require-dev": {
         "phpunit/phpunit": "^9",

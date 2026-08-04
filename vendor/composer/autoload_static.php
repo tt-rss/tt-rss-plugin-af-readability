@@ -7,52 +7,88 @@ namespace Composer\Autoload;
 class ComposerStaticInitb44cc79a0eaef9cd9c2f2ac697cbe9c0
 {
     public static $prefixLengthsPsr4 = array (
-        'f' => 
+        'f' =>
         array (
             'fivefilters\\Readability\\' => 24,
         ),
-        'P' => 
+        'P' =>
         array (
             'Psr\\Log\\' => 8,
-            'Psr\\Http\\Message\\' => 17,
         ),
-        'M' => 
+        'M' =>
         array (
             'Masterminds\\' => 12,
-        ),
-        'L' => 
-        array (
-            'League\\Uri\\' => 11,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'fivefilters\\Readability\\' => 
+        'fivefilters\\Readability\\' =>
         array (
             0 => __DIR__ . '/..' . '/fivefilters/readability.php/src',
         ),
-        'Psr\\Log\\' => 
+        'Psr\\Log\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
-        'Psr\\Http\\Message\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
-        ),
-        'Masterminds\\' => 
+        'Masterminds\\' =>
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
-        ),
-        'League\\Uri\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/uri/src',
-            1 => __DIR__ . '/..' . '/league/uri-interfaces/src',
         ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Masterminds\\HTML5' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5.php',
+        'Masterminds\\HTML5\\Elements' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Elements.php',
+        'Masterminds\\HTML5\\Entities' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Entities.php',
+        'Masterminds\\HTML5\\Exception' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Exception.php',
+        'Masterminds\\HTML5\\InstructionProcessor' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/InstructionProcessor.php',
+        'Masterminds\\HTML5\\Parser\\CharacterReference' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Parser/CharacterReference.php',
+        'Masterminds\\HTML5\\Parser\\DOMTreeBuilder' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Parser/DOMTreeBuilder.php',
+        'Masterminds\\HTML5\\Parser\\EventHandler' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Parser/EventHandler.php',
+        'Masterminds\\HTML5\\Parser\\FileInputStream' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Parser/FileInputStream.php',
+        'Masterminds\\HTML5\\Parser\\InputStream' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Parser/InputStream.php',
+        'Masterminds\\HTML5\\Parser\\ParseError' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Parser/ParseError.php',
+        'Masterminds\\HTML5\\Parser\\Scanner' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Parser/Scanner.php',
+        'Masterminds\\HTML5\\Parser\\StringInputStream' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Parser/StringInputStream.php',
+        'Masterminds\\HTML5\\Parser\\Tokenizer' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Parser/Tokenizer.php',
+        'Masterminds\\HTML5\\Parser\\TreeBuildingRules' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Parser/TreeBuildingRules.php',
+        'Masterminds\\HTML5\\Parser\\UTF8Utils' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Parser/UTF8Utils.php',
+        'Masterminds\\HTML5\\Serializer\\HTML5Entities' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/HTML5Entities.php',
+        'Masterminds\\HTML5\\Serializer\\OutputRules' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/OutputRules.php',
+        'Masterminds\\HTML5\\Serializer\\RulesInterface' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/RulesInterface.php',
+        'Masterminds\\HTML5\\Serializer\\Traverser' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/Traverser.php',
+        'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
+        'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
+        'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/Psr/Log/LogLevel.php',
+        'Psr\\Log\\LoggerAwareInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareInterface.php',
+        'Psr\\Log\\LoggerAwareTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareTrait.php',
+        'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
+        'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
+        'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
+        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/DummyTest.php',
+        'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
+        'fivefilters\\Readability\\Configuration' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Configuration.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMAttr' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMAttr.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMCdataSection' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMCdataSection.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMCharacterData' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMCharacterData.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMComment' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMComment.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMDocument' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMDocument.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMDocumentFragment' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMDocumentFragment.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMDocumentType' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMDocumentType.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMElement' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMElement.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMEntity' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMEntity.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMEntityReference' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMEntityReference.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMNode' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMNode.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMNodeList' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMNodeList.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMNotation' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMNotation.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMProcessingInstruction' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMProcessingInstruction.php',
+        'fivefilters\\Readability\\Nodes\\DOM\\DOMText' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/DOM/DOMText.php',
+        'fivefilters\\Readability\\Nodes\\NodeTrait' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/NodeTrait.php',
+        'fivefilters\\Readability\\Nodes\\NodeUtility' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Nodes/NodeUtility.php',
+        'fivefilters\\Readability\\ParseException' => __DIR__ . '/..' . '/fivefilters/readability.php/src/ParseException.php',
+        'fivefilters\\Readability\\Readability' => __DIR__ . '/..' . '/fivefilters/readability.php/src/Readability.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
