@@ -203,7 +203,7 @@ class Af_Readability extends Plugin {
 			"http_accept" => "text/*",
 			"type" => "text/html"]);
 
-		if ($tmp && mb_strlen($tmp) < 1024 * 500) {
+		if ($tmp && mb_strlen($tmp) < 1024 * 1000) {
 			$tmpdoc = new DOMDocument("1.0", "UTF-8");
 
 			if (!@$tmpdoc->loadHTML('<?xml encoding="UTF-8">' . $tmp))
