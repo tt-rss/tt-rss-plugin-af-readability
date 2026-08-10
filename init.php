@@ -193,6 +193,44 @@ class Af_Readability extends Plugin {
 	}
 
 	/**
+	 * Transcode fetched markup to UTF-8 before DOMDocument sees it.
+	 *
+	 * extract_content() passes loadHTML() an explicit '<?xml encoding="UTF-8">' declaration,
+	 * so $tmpdoc->encoding reports utf-8 afterwards no matter what the page actually is.
+	 * Deciding the source charset from the parsed document therefore never detects a
+	 * non-UTF-8 page, and the conversion it guards cannot run. Take the charset from the
+	 * response instead, and convert before parsing.
+	 *
+	 * @param string $html
+	 * @return string
+	 */
+	private function to_utf8(string $html) : string {
+		$charset = "";
+
+		// what the response declared
+		if (preg_match('/charset\s*=\s*["\']?([a-z0-9_:.-]+)/i', UrlHelper::$fetch_last_content_type ?? "", $m))
+			$charset = $m[1];
+
+		// otherwise, what the markup declares
+		if (!$charset && preg_match('/<meta[^>]+charset\s*=\s*["\']?([a-z0-9_:.-]+)/i', substr($html, 0, 8192), $m))
+			$charset = $m[1];
+
+		if (!$charset || preg_match('/^utf-?8$/i', $charset))
+			return $html;
+
+		// mb_convert_encoding() raises ValueError on an unknown charset
+		$known = array_change_key_case(array_flip(mb_list_encodings()), CASE_LOWER);
+
+		if (!isset($known[strtolower($charset)]))
+			return $html;
+
+		$converted = mb_convert_encoding($html, 'UTF-8', $charset);
+
+		// the original declaration would now misdescribe the payload
+		return preg_replace('/<meta[^>]+charset[^>]*>/i', '', $converted);
+	}
+
+	/**
 	 * @param string $url
 	 * @return string|false
 	 */
@@ -204,20 +242,12 @@ class Af_Readability extends Plugin {
 			"type" => "text/html"]);
 
 		if ($tmp && mb_strlen($tmp) < 1024 * 500) {
+			$tmp = $this->to_utf8($tmp);
+
 			$tmpdoc = new DOMDocument("1.0", "UTF-8");
 
 			if (!@$tmpdoc->loadHTML('<?xml encoding="UTF-8">' . $tmp))
 				return false;
-
-			// this is the worst hack yet :(
-			if (strtolower($tmpdoc->encoding) != 'utf-8') {
-				$tmp = preg_replace("/<meta.*?charset.*?\/?>/i", "", $tmp);
-				if (empty($tmpdoc->encoding)) {
-					$tmp = mb_convert_encoding($tmp, 'utf-8');
-				} else {
-					$tmp = mb_convert_encoding($tmp, 'utf-8', $tmpdoc->encoding);
-				}
-			}
 
 			try {
 
