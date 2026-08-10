@@ -241,7 +241,8 @@ class Af_Readability extends Plugin {
 			"http_accept" => "text/*",
 			"type" => "text/html"]);
 
-		if ($tmp && mb_strlen($tmp) < 1024 * 500) {
+		// byte length, not mb_strlen(): the payload is not known to be UTF-8 at this point
+		if ($tmp && strlen($tmp) < 1024 * 1500) {
 			$tmp = $this->to_utf8($tmp);
 
 			$tmpdoc = new DOMDocument("1.0", "UTF-8");
