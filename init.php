@@ -6,6 +6,10 @@ use \fivefilters\Readability\Configuration;
 
 class Af_Readability extends Plugin {
 
+	/** maximum size (bytes) of a fetched document that will be parsed, larger ones are skipped.
+	 *  default 512000, override with the environment variable TTRSS_AF_READABILITY_MAX_DOC_SIZE */
+	const MAX_DOC_SIZE = "AF_READABILITY_MAX_DOC_SIZE";
+
 	/** @var PluginHost $host */
 	private $host;
 
@@ -31,6 +35,8 @@ class Af_Readability extends Plugin {
 	function init($host)
 	{
 		$this->host = $host;
+
+		Config::add(self::MAX_DOC_SIZE, "512000", Config::T_INT);
 
 		$host->add_hook($host::HOOK_ARTICLE_FILTER, $this);
 		$host->add_hook($host::HOOK_PREFS_TAB, $this);
@@ -203,7 +209,7 @@ class Af_Readability extends Plugin {
 			"http_accept" => "text/*",
 			"type" => "text/html"]);
 
-		if ($tmp && mb_strlen($tmp) < 1024 * 500) {
+		if ($tmp && mb_strlen($tmp) < Config::get(self::MAX_DOC_SIZE)) {
 			$tmpdoc = new DOMDocument("1.0", "UTF-8");
 
 			if (!@$tmpdoc->loadHTML('<?xml encoding="UTF-8">' . $tmp))
